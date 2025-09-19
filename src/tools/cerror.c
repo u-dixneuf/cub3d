@@ -1,0 +1,41 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cerror.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mzary <mzary@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/19 18:10:35 by mzary             #+#    #+#             */
+/*   Updated: 2025/09/19 18:26:04 by mzary            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../../cub3d.h"
+
+int	cerror(char *message)
+{
+	size_t	i;
+
+	write(STDERR_FILENO, "Error\n", 6);
+	i = 0;
+	while (message && message[i])
+	{
+		write(STDERR_FILENO, message + i, 1);
+		i += 1;
+	}
+	if (message)
+		write(STDERR_FILENO, "\n", 1);
+	return (1);
+}
+
+void	cmemset(void *p, int c, size_t n)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < n)
+	{
+		*(unsigned char *)(p + i) = (unsigned char)c;
+		i++;
+	}
+}
