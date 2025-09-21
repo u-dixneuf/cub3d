@@ -6,7 +6,7 @@
 /*   By: mzary <mzary@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/21 14:38:47 by mzary             #+#    #+#             */
-/*   Updated: 2025/09/21 18:12:31 by mzary            ###   ########.fr       */
+/*   Updated: 2025/09/21 18:45:25 by mzary            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ static int	fillcheck(t_map *map, char **split, char c)
 	int	colors[3];
 	int	i;
 
+	if ((c == 'F' && map->fset) || (c == 'C' && map->cset))
+			return (cerror("duplicate color!"), 1);
 	i = -1;
 	while (++i < 3)
 	{
@@ -74,11 +76,9 @@ static int	fillcheck(t_map *map, char **split, char c)
 	i = -1;
 	while (++i < 3)
 	{
-		if ((c == 'F' && map->fset) || (c == 'C' && map->cset))
-			return (cerror("duplicate color!"), 1);
-		else if (c == 'F')
+		if (c == 'F')
 			map->floor[i] = colors[i];
-		else if (c == 'C')
+		else
 			map->ceiling[i] = colors[i];
 		i += 1;
 	}
