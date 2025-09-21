@@ -6,13 +6,13 @@
 /*   By: mzary <mzary@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/21 16:23:00 by mzary             #+#    #+#             */
-/*   Updated: 2025/09/21 16:26:57 by mzary            ###   ########.fr       */
+/*   Updated: 2025/09/21 17:48:19 by mzary            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
 
-static size_t	ft_strlcpy(char *dst, const char *src, size_t size)
+static size_t	ft_strlcpy(char *dst, char *src, size_t size)
 {
 	size_t	i;
 	size_t	src_len;
@@ -33,7 +33,7 @@ static size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 	return (src_len);
 }
 
-static int	s_count(char const *s, char c)
+static int	s_count(char *s, char c)
 {
 	int		i;
 	int		count;
@@ -67,7 +67,7 @@ void	freesplit(char **splits)
 	free(splits);
 }
 
-static int	ft_splits(char const *s, char c, char **splits, int count)
+static int	ft_splits(char *s, char c, char **splits, int count)
 {
 	int	i;
 	int	st;
@@ -95,7 +95,7 @@ static int	ft_splits(char const *s, char c, char **splits, int count)
 	return (1);
 }
 
-char	**csplit(char const *s, char c)
+char	**csplit(char *s, char c)
 {
 	char	**splits;
 	int		count;

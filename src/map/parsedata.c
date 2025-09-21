@@ -6,7 +6,7 @@
 /*   By: mzary <mzary@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/21 14:38:47 by mzary             #+#    #+#             */
-/*   Updated: 2025/09/21 16:44:05 by mzary            ###   ########.fr       */
+/*   Updated: 2025/09/21 18:12:31 by mzary            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,58 @@ static int	filldata(t_map *map, char *line, char c)
 	return (0);
 }
 
+static int	checkcolor(char *s)
+{
+	size_t	i;
+	int		color;
+
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] >'9' || s[i] < '0')
+			return (-1);
+		i += 1;
+	}
+	color = catoi(s);
+	if (color < 0 || color > 255)
+		return (-1);
+	return (color);
+}
+
+static int	fillcheck(t_map *map, char **split, char c)
+{
+	int	colors[3];
+	int	i;
+
+	i = -1;
+	while (++i < 3)
+	{
+		colors[i] = checkcolor(split[i]);
+		if (colors[i] == -1)
+			return (cerror("invalid color!"), 1);
+	}
+	i = -1;
+	while (++i < 3)
+	{
+		if ((c == 'F' && map->fset) || (c == 'C' && map->cset))
+			return (cerror("duplicate color!"), 1);
+		else if (c == 'F')
+			map->floor[i] = colors[i];
+		else if (c == 'C')
+			map->ceiling[i] = colors[i];
+		i += 1;
+	}
+	if (c == 'F')
+		map->fset = true;
+	else
+		map->cset = true;
+	return (0);
+}
+
 static int	fillcolor(t_map *map, char *line, char c)
 {
 	char	**split;
+	size_t	count;
 
 	while (*line == 32)
 		line += 1;
@@ -51,6 +100,17 @@ static int	fillcolor(t_map *map, char *line, char c)
 		return (cerror("path not found!"), 1);
 	if (line[cstrlen(line) - 1] == '\n')
 		line[cstrlen(line) - 1] = 0;
+	split = csplit(line, ',');
+	if (!split)
+		return (cerror("malloc error!"), 1);
+	count = 0;
+	while (split[count])
+		count += 1;
+	if (count != 3)
+		return (freesplit(split), cerror("color error!"), 1);
+	if (fillcheck(map, split, c))
+		return (freesplit(split), 1);
+	return (freesplit(split), 0);
 }
 
 int	parsedata(t_map *map)
@@ -58,7 +118,8 @@ int	parsedata(t_map *map)
 	char	*line;
 	int		fail;
 
-	while (map->count != 6 && !fail) // infinite loop scenario!
+	fail = 0;
+	while (map->count != 6 && !fail)
 	{
 		line = cgetline(map->filefd);
 		if (!line)

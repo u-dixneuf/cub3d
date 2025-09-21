@@ -6,7 +6,7 @@
 /*   By: mzary <mzary@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 20:42:43 by mzary             #+#    #+#             */
-/*   Updated: 2025/09/21 16:45:12 by mzary            ###   ########.fr       */
+/*   Updated: 2025/09/21 17:08:54 by mzary            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	spaceline(char *line)
 		return (0);
 	while (line[i])
 	{
-		if (!(line[i] == 32 || (line[i] >= 9 && line[i] <= 13 )))
+		if (!(line[i] == 32 || (line[i] >= 9 && line[i] <= 13)))
 			return (0);
 		i += 1;
 	}

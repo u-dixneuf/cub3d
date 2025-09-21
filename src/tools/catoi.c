@@ -6,13 +6,13 @@
 /*   By: mzary <mzary@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/21 16:22:41 by mzary             #+#    #+#             */
-/*   Updated: 2025/09/21 16:22:58 by mzary            ###   ########.fr       */
+/*   Updated: 2025/09/21 17:47:15 by mzary            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
 
-static int	check(const char *start, int len)
+static int	check(char *start, int len)
 {
 	char	*max;
 
@@ -26,16 +26,16 @@ static int	check(const char *start, int len)
 		return (0);
 	else if (len < 19)
 		return (1);
-	if (ft_strncmp(start, max, len) > 0)
+	if (cstrncmp(start, max, len) > 0)
 		return (0);
 	return (1);
 }
 
-int	catoi(const char *nptr)
+int	catoi(char *nptr)
 {
 	long long	res;
 	int			sign;
-	const char	*start;
+	char		*start;
 
 	res = 0;
 	sign = 1;

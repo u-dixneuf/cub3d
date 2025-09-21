@@ -6,7 +6,7 @@
 /*   By: mzary <mzary@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 17:57:20 by mzary             #+#    #+#             */
-/*   Updated: 2025/09/21 16:43:51 by mzary            ###   ########.fr       */
+/*   Updated: 2025/09/21 17:55:04 by mzary            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ typedef struct	s_map
 	char		*eastpath;
 
 	int			floor[3];
-	bool		fset;
+	bool		fset; //!!!!
 	int			ceiling[3];
 	bool		cset;
 
@@ -81,9 +81,9 @@ typedef struct	s_cube
 int		cerror(char *message);
 void	cmemset(void *p, int c, size_t n);
 
-int		catoi(const char *nptr);
+int		catoi(char *nptr);
 
-char	**csplit(const char *s, char c);
+char	**csplit(char *s, char c);
 void	freesplit(char **splits);
 
 int		cstrchr(char *s, char *tofind);

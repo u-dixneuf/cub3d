@@ -6,7 +6,7 @@
 /*   By: mzary <mzary@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 18:29:19 by mzary             #+#    #+#             */
-/*   Updated: 2025/09/19 20:10:02 by mzary            ###   ########.fr       */
+/*   Updated: 2025/09/21 17:46:37 by mzary            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	mlxhooks(t_mlx *mlx)
 	// ◦ Pressing ESC must close the window and quit the program cleanly.
 	// ◦ Clicking on the red cross on the window’s frame must close the window and
 	// quit the program cleanly.
-	mlxloop(mlx->mlx_ptr);
+	mlx_loop(mlx->mlx_ptr);
 	return (0);
 }
 
