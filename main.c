@@ -6,20 +6,11 @@
 /*   By: mzary <mzary@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 18:00:25 by mzary             #+#    #+#             */
-/*   Updated: 2025/09/19 20:41:07 by mzary            ###   ########.fr       */
+/*   Updated: 2025/09/21 16:20:59 by mzary            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-static void	initfds(t_map *map)
-{
-	map->filefd = -1;
-	map->northfd = -1;
-	map->southfd = -1;
-	map->westfd = -1;
-	map->eastfd = -1;
-}
 
 int	main(int ac, char **av)
 {
@@ -30,8 +21,7 @@ int	main(int ac, char **av)
 		return (cerror("invalid args!"));
 	cube.map.path = av[1];
 	cube.map.npc = &cube.npc;
-	initfds(&cube.map);
-	if (mapinit(&cube.map))
+	if (mapinit(&cube.map)) // HERE
 		return (mapdestroy(&cube.map),
 			cerror("mapinit fail!")); // double error message, remove?
 	cube.mlx.size_x = cube.map.size_x;

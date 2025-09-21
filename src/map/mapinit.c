@@ -6,16 +6,11 @@
 /*   By: mzary <mzary@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 20:11:18 by mzary             #+#    #+#             */
-/*   Updated: 2025/09/19 20:41:15 by mzary            ###   ########.fr       */
+/*   Updated: 2025/09/21 14:38:45 by mzary            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
-
-static int	mapelements(t_map *map)
-{
-
-}
 
 int	mapinit(t_map *map)
 {
@@ -27,7 +22,7 @@ int	mapinit(t_map *map)
 	map->filefd = open(map->path, O_RDONLY);
 	if (map->filefd == -1)
 		return (cerror("error opening file!"), 1);
-	if (mapelements(map))
+	if (parsedata(map))
 		return (1);
-	return (parsemap(map));
+	return (parsegrid(map));
 }

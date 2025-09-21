@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlxdestroy.c                                       :+:      :+:    :+:   */
+/*   parsegrid.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mzary <mzary@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/19 20:10:18 by mzary             #+#    #+#             */
-/*   Updated: 2025/09/21 16:14:35 by mzary            ###   ########.fr       */
+/*   Created: 2025/09/21 16:19:46 by mzary             #+#    #+#             */
+/*   Updated: 2025/09/21 16:20:12 by mzary            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
 
-void	mlxdestroy(t_mlx *mlx)
+int	parsegrid(t_map *map)
 {
-	(void)mlx;
-	// destroy mlx_ptr, img_ptr, win_ptr
+	(void)map;
+	return (0);
 }
