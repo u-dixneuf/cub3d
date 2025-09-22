@@ -6,7 +6,7 @@
 /*   By: mzary <mzary@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 16:10:50 by mzary             #+#    #+#             */
-/*   Updated: 2025/09/22 17:40:47 by mzary            ###   ########.fr       */
+/*   Updated: 2025/09/22 20:11:19 by mzary            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,33 @@ void	freegrid(t_grid	*grid)
 		free(grid);
 		grid = next;
 	}
+}
+
+bool	checkgrid(t_grid *grid, t_map *map)
+{
+	int		i;
+	bool	dset;
+	char	c;
+
+	dset = false;
+	while (grid)
+	{
+		if (!*grid->line || spaceline(grid->line))
+			return (cerror("empty line in map!"), false);
+		i = -1;
+		while (grid->line[++i])
+		{
+			c = grid->line[i];
+			if ((c == 'N' || c == 'S' || c == 'W' || c == 'E') && dset)
+				return (cerror("cannot reset direction!"), false);
+			else if (c == 'N' || c == 'S' || c == 'W' || c == 'E')
+				dset = true;
+			else if (c != '0' && c != '1' && c != 32)
+				return (cerror("invalid character in map!"), false);
+		}
+		grid = grid->next;
+	}
+	if (!dset)
+		return (cerror("direction not set!"), false);
+	return (true);
 }

@@ -6,7 +6,7 @@
 /*   By: mzary <mzary@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 17:57:20 by mzary             #+#    #+#             */
-/*   Updated: 2025/09/22 17:43:21 by mzary            ###   ########.fr       */
+/*   Updated: 2025/09/22 20:12:22 by mzary            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,13 +105,11 @@ int		mapinit(t_cube *cube);
 void	mapdestroy(t_map *map);
 
 int		parsedata(t_map *map);
-int		parsegrid(t_cube *cube);
+int		parsegrid(t_map *map);
 
 bool	getgrid(t_grid **grid, int fd);
 void	freegrid(t_grid	*grid);
-bool	checkgrid(t_grid *grid, )
-
-//bool	transgrid(t_grid *grid, t_cube *cube); // ?
+bool	checkgrid(t_grid *grid, t_map *map);
 
 /* game */
 int		game(t_cube	*cube);

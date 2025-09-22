@@ -6,7 +6,7 @@
 /*   By: mzary <mzary@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 20:11:18 by mzary             #+#    #+#             */
-/*   Updated: 2025/09/22 16:00:11 by mzary            ###   ########.fr       */
+/*   Updated: 2025/09/22 17:50:46 by mzary            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	mapinit(t_cube *cube)
 {
-	int		index;
+	int	index;
 
 	index = cstrchr(cube->map.path, ".cub");
 	if (index == -1 || index != cstrlen(cube->map.path) - 4)
@@ -24,5 +24,5 @@ int	mapinit(t_cube *cube)
 		return (cerror("error opening file!"), 1);
 	if (parsedata(&cube->map))
 		return (1);
-	return (parsegrid(cube));
+	return (parsegrid(&cube->map));
 }
