@@ -6,7 +6,7 @@
 #    By: mzary <mzary@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/19 18:28:02 by mzary             #+#    #+#              #
-#    Updated: 2025/09/21 17:49:07 by mzary            ###   ########.fr        #
+#    Updated: 2025/09/22 17:07:05 by mzary            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,7 @@ SRC = 	main.c \
 		src/map/mapdestroy.c \
 		src/map/parsedata.c \
 		src/map/parsegrid.c \
+		src/map/gridutils.c \
 		src/game/game.c
 OBJ =	$(SRC:.c=.o)
 MLX =	mlx/libmlx.a

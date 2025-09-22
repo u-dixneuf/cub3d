@@ -6,7 +6,7 @@
 /*   By: mzary <mzary@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 18:10:35 by mzary             #+#    #+#             */
-/*   Updated: 2025/09/19 18:26:04 by mzary            ###   ########.fr       */
+/*   Updated: 2025/09/22 17:28:07 by mzary            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,15 @@ void	cmemset(void *p, int c, size_t n)
 		*(unsigned char *)(p + i) = (unsigned char)c;
 		i++;
 	}
+}
+
+void	*ccalloc(size_t size)
+{
+	void	*ptr;
+
+	ptr = malloc(size);
+	if (!ptr)
+		return (NULL);
+	cmemset(ptr, 0, size);
+	return (ptr);
 }

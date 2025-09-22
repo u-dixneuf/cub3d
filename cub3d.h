@@ -6,7 +6,7 @@
 /*   By: mzary <mzary@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 17:57:20 by mzary             #+#    #+#             */
-/*   Updated: 2025/09/21 17:55:04 by mzary            ###   ########.fr       */
+/*   Updated: 2025/09/22 17:43:21 by mzary            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,8 @@
 # include "mlx/mlx.h"
 # include "mlx/mlx_int.h"
 
-# define SCALE 10
-
-typedef struct	s_npc
-{
-	int			xp;
-	int			yp;
-	int			xa;
-	int			ya;
-}	t_npc;
+# define SCALE	10
+# define FOV	60
 
 typedef struct	s_mlx
 {
@@ -45,15 +38,12 @@ typedef struct	s_mlx
 	int			bpx;
 	int			sl;
 	int			e;
-
-	t_npc		*npc;
 }	t_mlx;
 
 typedef struct	s_map
 {
 	char		*path; // no need to free av[2]
-	t_npc		*npc;
-	int			filefd; // need to close
+	int			filefd; // need to close at mapdestroy
 	int			count;
 
 	char		*northpath; // need to free these
@@ -62,24 +52,36 @@ typedef struct	s_map
 	char		*eastpath;
 
 	int			floor[3];
-	bool		fset; //!!!!
+	bool		fset;
 	int			ceiling[3];
 	bool		cset;
 
+	int			**grid;
 	int			size_x;
 	int			size_y;
+	
+	int			xp;
+	int			yp;
+	double		xa;
+	double		ya; // angles
 }	t_map;
 
 typedef struct	s_cube
 {
 	t_mlx		mlx;
 	t_map		map;
-	t_npc		npc;
 }	t_cube;
+
+typedef struct	s_grid
+{
+	char			*line;
+	struct s_grid	*next;
+}	t_grid;
 
 /* tools */
 int		cerror(char *message);
 void	cmemset(void *p, int c, size_t n);
+void	*ccalloc(size_t size);
 
 int		catoi(char *nptr);
 
@@ -95,15 +97,21 @@ int		cstrncmp(char *s1, char *s2, size_t n);
 char	*cgetline(int fd);
 int		spaceline(char *line);
 
-int		mlxinit(t_mlx *mlx);
+int		mlxinit(t_cube *cube);
 void	mlxdestroy(t_mlx *mlx);
 
 /* map */
-int		mapinit(t_map *map);
+int		mapinit(t_cube *cube);
 void	mapdestroy(t_map *map);
 
 int		parsedata(t_map *map);
-int		parsegrid(t_map *map);
+int		parsegrid(t_cube *cube);
+
+bool	getgrid(t_grid **grid, int fd);
+void	freegrid(t_grid	*grid);
+bool	checkgrid(t_grid *grid, )
+
+//bool	transgrid(t_grid *grid, t_cube *cube); // ?
 
 /* game */
 int		game(t_cube	*cube);

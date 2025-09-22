@@ -6,13 +6,13 @@
 /*   By: mzary <mzary@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 18:29:19 by mzary             #+#    #+#             */
-/*   Updated: 2025/09/21 17:46:37 by mzary            ###   ########.fr       */
+/*   Updated: 2025/09/22 17:43:42 by mzary            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
 
-int	mlxhooks(t_mlx *mlx)
+static int	mlxhooks(t_cube *cube)
 {
 	// ◦ The left and right arrow keys of the keyboard must allow you to look left and
 	// right in the maze.
@@ -21,28 +21,27 @@ int	mlxhooks(t_mlx *mlx)
 	// ◦ Pressing ESC must close the window and quit the program cleanly.
 	// ◦ Clicking on the red cross on the window’s frame must close the window and
 	// quit the program cleanly.
-	mlx_loop(mlx->mlx_ptr);
+	mlx_loop(cube->mlx.mlx_ptr);
 	return (0);
 }
 
-int	mlxinit(t_mlx *mlx)
+int	mlxinit(t_cube *cube)
 {
-	mlx->mlx_ptr = mlx_init();
-	if (!mlx->mlx_ptr)
+	cube->mlx.mlx_ptr = mlx_init();
+	if (!cube->mlx.mlx_ptr)
 		return (1);
-	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr,
-			mlx->size_x, mlx->size_y, "cub3d");
-	if (!mlx->win_ptr)
+	cube->mlx.win_ptr = mlx_new_window(cube->mlx.mlx_ptr,
+			cube->mlx.size_x, cube->mlx.size_y, "cub3d");
+	if (!cube->mlx.win_ptr)
 		return (1);
-	mlx->img_ptr = mlx_new_image(mlx->mlx_ptr,
-			mlx->size_x,
-			mlx->size_y);
-	if (!mlx->img_ptr)
+	cube->mlx.img_ptr = mlx_new_image(cube->mlx.mlx_ptr,
+			cube->mlx.size_x,
+			cube->mlx.size_y);
+	if (!cube->mlx.img_ptr)
 		return (1);
-	mlx->img_addr = mlx_get_data_addr(mlx->img_ptr,
-			&mlx->bpx, &mlx->sl, &mlx->e);
-	if (!mlx->img_addr)
+	cube->mlx.img_addr = mlx_get_data_addr(cube->mlx.img_ptr,
+			&cube->mlx.bpx, &cube->mlx.sl, &cube->mlx.e);
+	if (!cube->mlx.img_addr)
 		return (1);
-	return (mlxhooks(mlx));
+	return (mlxhooks(cube));
 }
-

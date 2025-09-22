@@ -6,7 +6,7 @@
 /*   By: mzary <mzary@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/21 14:38:47 by mzary             #+#    #+#             */
-/*   Updated: 2025/09/21 18:45:25 by mzary            ###   ########.fr       */
+/*   Updated: 2025/09/22 15:41:53 by mzary            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,11 +68,9 @@ static int	fillcheck(t_map *map, char **split, char c)
 			return (cerror("duplicate color!"), 1);
 	i = -1;
 	while (++i < 3)
-	{
 		colors[i] = checkcolor(split[i]);
-		if (colors[i] == -1)
+	if (colors[0] == -1 || colors[1] == -1 || colors[2] == -1)
 			return (cerror("invalid color!"), 1);
-	}
 	i = -1;
 	while (++i < 3)
 	{
