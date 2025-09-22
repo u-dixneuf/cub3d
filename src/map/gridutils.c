@@ -6,7 +6,7 @@
 /*   By: mzary <mzary@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 16:10:50 by mzary             #+#    #+#             */
-/*   Updated: 2025/09/22 20:11:19 by mzary            ###   ########.fr       */
+/*   Updated: 2025/09/22 21:31:19 by mzary            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,17 @@ bool	getgrid(t_grid **grid, int fd)
 		return (false);
 	while (spaceline(line))
 	{
-		free(line);
+		cfree((void **)&line);
 		if (!getlinecheck(&line, fd))
 			return (false);
 	}
 	if (!*line)
-		return (free(line), cerror("missing map!"), false);
+		return (cfree((void **)&line), cerror("missing map!"), false);
 	while (*line)
 	{
 		*grid = ccalloc(sizeof(t_grid));
 		if (!*grid)
-			return (free(line), cerror("malloc fail!"), false);
+			return (cfree((void **)&line), cerror("malloc fail!"), false);
 		if (line[cstrlen(line) - 1] == '\n')
 			line[cstrlen(line) - 1] = 0;
 		(*grid)->line = line;
@@ -46,7 +46,7 @@ bool	getgrid(t_grid **grid, int fd)
 		if (!getlinecheck(&line, fd))
 			return (false);
 	}
-	return (free(line), true);
+	return (cfree((void **)&line), true);
 }
 
 void	freegrid(t_grid	*grid)
@@ -56,8 +56,8 @@ void	freegrid(t_grid	*grid)
 	while (grid)
 	{
 		next = grid->next;
-		free(grid->line);
-		free(grid);
+		cfree((void **)&grid->line);
+		cfree((void **)&grid);
 		grid = next;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: mzary <mzary@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 17:57:20 by mzary             #+#    #+#             */
-/*   Updated: 2025/09/22 20:12:22 by mzary            ###   ########.fr       */
+/*   Updated: 2025/09/22 21:26:42 by mzary            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 
 # define SCALE	10
 # define FOV	60
+# define PI		3.14159
 
 typedef struct	s_mlx
 {
@@ -56,14 +57,13 @@ typedef struct	s_map
 	int			ceiling[3];
 	bool		cset;
 
-	int			**grid;
+	char		*grid;
 	int			size_x;
 	int			size_y;
 	
-	int			xp;
-	int			yp;
-	double		xa;
-	double		ya; // angles
+	int			pX;
+	int			pY;
+	double		angle;
 }	t_map;
 
 typedef struct	s_cube
@@ -82,6 +82,7 @@ typedef struct	s_grid
 int		cerror(char *message);
 void	cmemset(void *p, int c, size_t n);
 void	*ccalloc(size_t size);
+bool	cfree(void **p);
 
 int		catoi(char *nptr);
 

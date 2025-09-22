@@ -6,7 +6,7 @@
 /*   By: mzary <mzary@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/21 16:23:00 by mzary             #+#    #+#             */
-/*   Updated: 2025/09/21 17:48:19 by mzary            ###   ########.fr       */
+/*   Updated: 2025/09/22 21:29:45 by mzary            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,10 @@ void	freesplit(char **splits)
 	i = 0;
 	while (splits[i])
 	{
-		free(splits[i]);
+		cfree((void **)&splits[i]);
 		i++;
 	}
-	free(splits);
+	cfree((void **)&splits);
 }
 
 static int	ft_splits(char *s, char c, char **splits, int count)

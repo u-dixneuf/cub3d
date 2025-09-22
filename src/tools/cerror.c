@@ -6,7 +6,7 @@
 /*   By: mzary <mzary@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 18:10:35 by mzary             #+#    #+#             */
-/*   Updated: 2025/09/22 17:28:07 by mzary            ###   ########.fr       */
+/*   Updated: 2025/09/22 21:13:28 by mzary            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,14 @@ void	*ccalloc(size_t size)
 		return (NULL);
 	cmemset(ptr, 0, size);
 	return (ptr);
+}
+
+bool	cfree(void **p)
+{
+	if (p && *p)
+	{
+		free(*p);
+		*p = NULL;
+	}
+	return (true);
 }

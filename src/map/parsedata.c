@@ -6,7 +6,7 @@
 /*   By: mzary <mzary@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/21 14:38:47 by mzary             #+#    #+#             */
-/*   Updated: 2025/09/22 15:41:53 by mzary            ###   ########.fr       */
+/*   Updated: 2025/09/22 21:31:24 by mzary            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int	filldata(t_map *map, char *line, char c)
 		|| (c == 'S' && map->southpath)
 		|| (c == 'W' && map->westpath)
 		|| (c == 'E' && map->eastpath))
-		return (cerror("duplicate element!"), free(path), 1);
+		return (cerror("duplicate element!"), cfree((void **)&path), 1);
 	if (c == 'N')
 		map->northpath = path;
 	else if (c == 'S')
@@ -134,7 +134,7 @@ int	parsedata(t_map *map)
 		else if (!*line || !spaceline(line))
 			fail = cerror("missing element(s)!");
 		map->count += !fail * !spaceline(line);
-		free(line);
+		cfree((void **)&line);
 	}
 	return (fail);
 }
