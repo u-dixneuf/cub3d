@@ -6,20 +6,37 @@
 /*   By: mzary <mzary@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/21 16:19:46 by mzary             #+#    #+#             */
-/*   Updated: 2025/09/22 21:43:38 by mzary            ###   ########.fr       */
+/*   Updated: 2025/09/23 17:25:56 by mzary            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3d.h"
 
-static bool	closedgrid(char *grid, int sx, int sy)
+static bool	closedgrid(t_map *map)
 {
-	// The map must be closed/surrounded by walls, if not the program must return
-	// an error.
+	int	y;
+	int	x;
+
+	y = 0;
+	while (y < map->size_y)
+	{
+		x = 0;
+		while (x < map->size_x)
+		{
+			if ((g(map, x - 1, y) == '+'
+				|| g(map, x + 1, y) == '+'
+				|| g(map, x, y - 1) == '+'
+				|| g(map, x, y + 1) == '+')
+				&& g(map, x, y) == '0')
+				return (cerror("map not closed!"), false);
+			x += 1;
+		}
+		y += 1;
+	}
 	return (true);
 }
 
-static void	getplayer(int x, int y, char dir, t_map *map)
+static void	getplayer(int x, int y, char dir, t_map *map) // check angles
 {
 	map->pX = x;
 	map->pY = y;
@@ -77,7 +94,7 @@ static bool	transgrid(t_grid *grid, t_map *map)
 	if (!map->grid)
 		return (cerror("malloc fail!"), false);
 	fillgrid(grid, map);
-	if (!closedgrid(map->grid, map->size_x, map->size_y))
+	if (!closedgrid(map))
 		return (cfree((void **)&map->grid), false);
 	return (true);
 }

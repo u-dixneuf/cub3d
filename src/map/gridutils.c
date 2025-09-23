@@ -6,7 +6,7 @@
 /*   By: mzary <mzary@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 16:10:50 by mzary             #+#    #+#             */
-/*   Updated: 2025/09/22 21:31:19 by mzary            ###   ########.fr       */
+/*   Updated: 2025/09/23 17:20:56 by mzary            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,4 +89,12 @@ bool	checkgrid(t_grid *grid, t_map *map)
 	if (!dset)
 		return (cerror("direction not set!"), false);
 	return (true);
+}
+
+char	g(t_map *map, int x, int y)
+{
+	if (x < 0 || x >= map->size_x
+		|| y < 0 || y >= map->size_y)
+		return ('+');
+	return (map->grid[y * map->size_x + x]);
 }
