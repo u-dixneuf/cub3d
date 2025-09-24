@@ -6,7 +6,7 @@
 /*   By: mzary <mzary@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 20:11:22 by mzary             #+#    #+#             */
-/*   Updated: 2025/09/21 16:14:43 by mzary            ###   ########.fr       */
+/*   Updated: 2025/09/23 18:06:56 by mzary            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 
 void	mapdestroy(t_map *map)
 {
-	(void)map;
-	// a lot of stuff
+	cclose(map->filefd);
+	cfree((void **)&map->northpath);
+	cfree((void **)&map->southpath);
+	cfree((void **)&map->westpath);
+	cfree((void **)&map->eastpath);
+	cfree((void **)&map->grid);
 }

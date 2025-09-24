@@ -6,7 +6,7 @@
 /*   By: mzary <mzary@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/21 16:19:46 by mzary             #+#    #+#             */
-/*   Updated: 2025/09/23 17:25:56 by mzary            ###   ########.fr       */
+/*   Updated: 2025/09/23 17:28:52 by mzary            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,6 @@ int	parsegrid(t_map *map)
 	if (!getgrid(&grid, map->filefd)
 		|| !checkgrid(grid, map))
 		return (freegrid(grid), 1);
-	// transform grid into 2D char array and get player positions and angles
 	if (!transgrid(grid, map))
 		return (freegrid(grid), 1);
 	return (freegrid(grid), 0);

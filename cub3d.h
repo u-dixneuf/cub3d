@@ -6,7 +6,7 @@
 /*   By: mzary <mzary@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 17:57:20 by mzary             #+#    #+#             */
-/*   Updated: 2025/09/23 16:59:05 by mzary            ###   ########.fr       */
+/*   Updated: 2025/09/23 17:32:06 by mzary            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ int		cerror(char *message);
 void	cmemset(void *p, int c, size_t n);
 void	*ccalloc(size_t size);
 bool	cfree(void **p);
+bool	cclose(int *fd);
 
 int		catoi(char *nptr);
 

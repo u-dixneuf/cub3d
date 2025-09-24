@@ -6,7 +6,7 @@
 /*   By: mzary <mzary@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 18:10:35 by mzary             #+#    #+#             */
-/*   Updated: 2025/09/22 21:13:28 by mzary            ###   ########.fr       */
+/*   Updated: 2025/09/23 18:04:38 by mzary            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,16 @@ bool	cfree(void **p)
 	{
 		free(*p);
 		*p = NULL;
+	}
+	return (true);
+}
+
+bool	cclose(int *fd)
+{
+	if (fd && *fd != -1)
+	{
+		close(*fd);
+		*fd = -1;
 	}
 	return (true);
 }
