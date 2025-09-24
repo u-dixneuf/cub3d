@@ -6,7 +6,7 @@
 /*   By: mzary <mzary@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 18:29:19 by mzary             #+#    #+#             */
-/*   Updated: 2025/09/22 17:43:42 by mzary            ###   ########.fr       */
+/*   Updated: 2025/09/24 15:31:01 by mzary            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,12 @@ int	mlxinit(t_cube *cube)
 	if (!cube->mlx.mlx_ptr)
 		return (1);
 	cube->mlx.win_ptr = mlx_new_window(cube->mlx.mlx_ptr,
-			cube->mlx.size_x, cube->mlx.size_y, "cub3d");
+			SIZE, SIZE, "cub3d");
 	if (!cube->mlx.win_ptr)
 		return (1);
 	cube->mlx.img_ptr = mlx_new_image(cube->mlx.mlx_ptr,
-			cube->mlx.size_x,
-			cube->mlx.size_y);
+			SIZE,
+			SIZE);
 	if (!cube->mlx.img_ptr)
 		return (1);
 	cube->mlx.img_addr = mlx_get_data_addr(cube->mlx.img_ptr,

@@ -6,7 +6,7 @@
 /*   By: mzary <mzary@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 17:57:20 by mzary             #+#    #+#             */
-/*   Updated: 2025/09/23 17:32:06 by mzary            ###   ########.fr       */
+/*   Updated: 2025/09/24 18:32:13 by mzary            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,15 @@
 # include "mlx/mlx.h"
 # include "mlx/mlx_int.h"
 
-# define SCALE	10
-# define FOV	60
+# define SIZE	601
 # define PI		3.14159
+# define FOV	PI / 3
+# define CSIZE	5 // test and modify
+# define EPS	0.000001
+# define INCR	CSIZE / 100 // 100 points per size
 
 typedef struct	s_mlx
 {
-	int			size_x;
-	int			size_y;
 	void		*mlx_ptr; // need to free these
 	void		*win_ptr;
 	void		*img_ptr;
@@ -63,6 +64,8 @@ typedef struct	s_map
 	
 	int			pX;
 	int			pY;
+	double		posX;
+	double		posY;
 	double		angle;
 }	t_map;
 
@@ -77,6 +80,16 @@ typedef struct	s_grid
 	char			*line;
 	struct s_grid	*next;
 }	t_grid;
+
+typedef struct	s_ray
+{
+	double	r_angle;
+	double	px;
+	double	py;
+
+	double	c_dist;
+	char	dir;
+}	t_ray;
 
 /* tools */
 int		cerror(char *message);

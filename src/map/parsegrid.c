@@ -6,7 +6,7 @@
 /*   By: mzary <mzary@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/21 16:19:46 by mzary             #+#    #+#             */
-/*   Updated: 2025/09/23 17:28:52 by mzary            ###   ########.fr       */
+/*   Updated: 2025/09/24 18:02:32 by mzary            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,12 @@ static void	getplayer(int x, int y, char dir, t_map *map) // check angles
 {
 	map->pX = x;
 	map->pY = y;
+	map->posX = CSIZE / 2;
+	map->posY = CSIZE / 2;
 	if (dir == 'N')
 		map->angle = PI / 2;
 	else if (dir == 'S')
-		map->angle = -PI / 2;
+		map->angle = 3 * PI / 2;
 	else if (dir == 'W')
 		map->angle = PI;
 	else

@@ -6,7 +6,7 @@
 /*   By: mzary <mzary@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 18:00:25 by mzary             #+#    #+#             */
-/*   Updated: 2025/09/23 18:06:04 by mzary            ###   ########.fr       */
+/*   Updated: 2025/09/24 15:30:28 by mzary            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,8 @@ int	main(int ac, char **av)
 		return (cerror("invalid args!"));
 	cube.map.path = av[1];
 	cube.map.filefd = -1;
-	if (mapinit(&cube)) // HERE
-		return (mapdestroy(&cube.map), 1); // double error message, remove?
-	// need size_x size_y in mlx struct
+	if (mapinit(&cube))
+		return (mapdestroy(&cube.map), 1);
 	if (mlxinit(&cube))
 		return (mapdestroy(&cube.map),
 			mlxdestroy(&cube.mlx),
