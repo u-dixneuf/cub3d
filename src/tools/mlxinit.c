@@ -6,7 +6,7 @@
 /*   By: mzary <mzary@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 18:29:19 by mzary             #+#    #+#             */
-/*   Updated: 2025/09/24 15:31:01 by mzary            ###   ########.fr       */
+/*   Updated: 2025/09/24 20:24:03 by mzary            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	mlxhooks(t_cube *cube)
 	// ◦ Pressing ESC must close the window and quit the program cleanly.
 	// ◦ Clicking on the red cross on the window’s frame must close the window and
 	// quit the program cleanly.
-	mlx_loop(cube->mlx.mlx_ptr);
+	//mlx_loop(cube->mlx.mlx_ptr);
 	return (0);
 }
 

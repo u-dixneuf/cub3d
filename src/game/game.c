@@ -6,7 +6,7 @@
 /*   By: mzary <mzary@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/21 16:15:07 by mzary             #+#    #+#             */
-/*   Updated: 2025/09/24 18:36:22 by mzary            ###   ########.fr       */
+/*   Updated: 2025/09/24 21:01:38 by mzary            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,18 @@
 
 static double	contact(t_ray *ray, double	rx, double ry)
 {
+	double	rayvec[2];
+	double	rvec[2];
+	double	product;
 
+	rayvec[0] = cos(ray->r_angle);
+	rayvec[1] = -sin(ray->r_angle);
+	rvec[0] = rx - ray->px;
+	rvec[1] = ry - ray->py;
+	product = norme(rayvec) * norme(rvec);
+	if (fabs(scalarp(rayvec, rvec) - product) < EPS)
+		return (norme(rvec));
+	return (-1);
 }
 
 static void	check_contact(t_ray *ray, int rX, int rY) // norminette
@@ -49,7 +60,37 @@ static void	check_contact(t_ray *ray, int rX, int rY) // norminette
 			ray->c_dist = pt_d;
 			ray->dir = 'E';
 		}
-		pos += INCR;
+		pos = pos + INCR;
+	}
+}
+
+static void	fill_column(t_ray ray, t_cube *cube, int X)
+{
+	double	max_cdis;
+	double	texture_s;
+	int		Y;
+	int		*color;
+
+	max_cdis = sqrt(pow(cube->map.size_x * CSIZE, 2) +
+		pow(cube->map.size_y * CSIZE, 2));
+	texture_s = SIZE * (1 - ray.c_dist / max_cdis); // fix
+	Y = 0;
+	while (Y < SIZE)
+	{
+		color = (int *)(cube->mlx.img_addr + Y * cube->mlx.sl + X * cube->mlx.bpx / 8);
+		if (Y <= SIZE / 2 - texture_s / 2)
+			*color = mlx_get_color_value(cube->mlx.mlx_ptr, CEILING);
+		else if (Y >= SIZE / 2 + texture_s / 2)
+			*color = mlx_get_color_value(cube->mlx.mlx_ptr, FLOOR);
+		else if (ray.dir == 'N')
+			*color = mlx_get_color_value(cube->mlx.mlx_ptr, NORTH);
+		else if (ray.dir == 'S')
+			*color = mlx_get_color_value(cube->mlx.mlx_ptr, SOUTH);
+		else if (ray.dir == 'W')
+			*color = mlx_get_color_value(cube->mlx.mlx_ptr, WEST);
+		else if (ray.dir == 'E')
+			*color = mlx_get_color_value(cube->mlx.mlx_ptr, EAST);
+		Y += 1;
 	}
 }
 
@@ -78,10 +119,7 @@ static void	draw_column(t_cube *cube, int X)
 		}
 		rY += 1;
 	}
-	// get texture_size (0 <= ts <= SIZE)
-	// fill 0<=y<= SIZE / 2 - TS / 2 with ceiling color
-	// fill SIZE/2 - TS/2<=y<=SIZE/2 + TS/2 with texture
-	// fill SIZE/2 + TS/2<=y<=SIZE with floor color
+	fill_column(ray, cube, X);
 }
 
 int	game(t_cube	*cube)
@@ -94,5 +132,8 @@ int	game(t_cube	*cube)
 		draw_column(cube, X);
 		X += 1;
 	}
+	mlx_put_image_to_window(cube->mlx.mlx_ptr, cube->mlx.win_ptr,
+		cube->mlx.img_ptr, 0, 0);
+	mlx_loop(cube->mlx.mlx_ptr);
 	return (0);
 }

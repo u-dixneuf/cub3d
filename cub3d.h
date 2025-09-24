@@ -6,7 +6,7 @@
 /*   By: mzary <mzary@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 17:57:20 by mzary             #+#    #+#             */
-/*   Updated: 2025/09/24 18:32:13 by mzary            ###   ########.fr       */
+/*   Updated: 2025/09/24 20:54:35 by mzary            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,20 @@
 # include "mlx/mlx_int.h"
 
 # define SIZE	601
-# define PI		3.14159
+# define PI		3.14159265
 # define FOV	PI / 3
 # define CSIZE	5 // test and modify
 # define EPS	0.000001
-# define INCR	CSIZE / 100 // 100 points per size
+# define INCR	0.05
+
+// debugpos
+# define CEILING 0xffffff // white
+# define FLOOR	0xff00ea // purple
+# define NORTH	0x12de1c // green
+# define SOUTH	0xff2f00 // red
+# define WEST	0x07d5f5 // blue
+# define EAST	0xf6ff00 // yellow
+// debug
 
 typedef struct	s_mlx
 {
@@ -114,6 +123,9 @@ int		spaceline(char *line);
 
 int		mlxinit(t_cube *cube);
 void	mlxdestroy(t_mlx *mlx);
+
+double	norme(double vec[2]);
+double	scalarp(double a[2], double b[2]);
 
 /* map */
 int		mapinit(t_cube *cube);

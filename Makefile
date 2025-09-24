@@ -6,7 +6,7 @@
 #    By: mzary <mzary@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/19 18:28:02 by mzary             #+#    #+#              #
-#    Updated: 2025/09/22 17:07:05 by mzary            ###   ########.fr        #
+#    Updated: 2025/09/24 19:48:39 by mzary            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ SRC = 	main.c \
 		src/tools/cgetline.c \
 		src/tools/cerror.c \
 		src/tools/catoi.c \
+		src/tools/vecutils.c \
 		src/map/mapinit.c \
 		src/map/mapdestroy.c \
 		src/map/parsedata.c \
