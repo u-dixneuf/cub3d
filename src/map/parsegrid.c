@@ -43,11 +43,11 @@ static void	getplayer(int x, int y, char dir, t_map *map) // check angles
 	map->posX = CSIZE / 2;
 	map->posY = CSIZE / 2;
 	if (dir == 'N')
-		map->angle = PI / 2;
+		map->angle = 90;
 	else if (dir == 'S')
-		map->angle = 3 * PI / 2;
+		map->angle = 270;
 	else if (dir == 'W')
-		map->angle = PI;
+		map->angle = 180;
 	else
 		map->angle = 0;
 	map->grid[map->size_x * y + x] = '0';

@@ -12,6 +12,59 @@
 
 #include "../../cub3d.h"
 
+int key_handler(int key, void *vcube)
+{
+	t_cube *cube = (t_cube *)vcube;
+	if (key == 65307) // ESC
+		exit(0);
+	else if (key == 65361) // <-
+		cube->map.angle += 1;
+	else if (key == 65363) // ->
+		cube->map.angle -= 1;
+	else if (key == 119) // W
+	{
+		if (cube->map.posY != 0)
+			cube->map.posY -= 1;
+		else if (cube->map.pY != 0)
+		{
+			cube->map.pY -= 1;
+			cube->map.posY = CSIZE;
+		}
+	}
+	else if (key == 115) // S
+	{
+		if (cube->map.posY != CSIZE)
+			cube->map.posY += 1;
+		else if (cube->map.pY != cube->map.size_y - 1)
+		{
+			cube->map.pY += 1;
+			cube->map.posY = 0;
+		}
+	}
+	else if (key == 97) // A
+	{
+		if (cube->map.posX != 0)
+			cube->map.posX -= 1;
+		else if (cube->map.pX != 0)
+		{
+			cube->map.pX -= 1;
+			cube->map.posX = CSIZE;
+		}
+	}
+	else if (key == 100) // D
+	{
+		if (cube->map.posX != CSIZE)
+			cube->map.posX += 1;
+		else if (cube->map.pX != cube->map.size_x - 1)
+		{
+			cube->map.pX += 1;
+			cube->map.posX = 0;
+		}
+	}
+	game(cube);
+	return (0);
+}
+
 static int	mlxhooks(t_cube *cube)
 {
 	// ◦ The left and right arrow keys of the keyboard must allow you to look left and
@@ -22,6 +75,8 @@ static int	mlxhooks(t_cube *cube)
 	// ◦ Clicking on the red cross on the window’s frame must close the window and
 	// quit the program cleanly.
 	//mlx_loop(cube->mlx.mlx_ptr);
+	mlx_key_hook(cube->mlx.win_ptr, key_handler, cube);
+	mlx_loop(cube->mlx.mlx_ptr);
 	return (0);
 }
 

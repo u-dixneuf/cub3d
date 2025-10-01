@@ -24,11 +24,9 @@
 # include "mlx/mlx_int.h"
 
 # define SIZE	601
-# define PI		3.14159265
-# define FOV	PI / 3
-# define CSIZE	5 // test and modify
-# define EPS	0.000001
-# define INCR	0.05
+# define FOV	60
+# define CSIZE	400
+# define EPS	0.001
 
 // debugpos
 # define CEILING 0xffffff // white
@@ -70,7 +68,7 @@ typedef struct	s_map
 	char		*grid;
 	int			size_x;
 	int			size_y;
-	
+
 	int			pX;
 	int			pY;
 	double		posX;
